@@ -1,0 +1,6 @@
+# Root Gitignore
+Task-03-Weather-App/node_modules/
+node_modules/
+.DS_Store
+Thumbs.db
+*.log

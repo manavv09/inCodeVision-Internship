@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inCodeVision — Elevate Your Code Comprehension</title>
+  <meta name="description" content="Visualize complex codebases instantly. Understand patterns, dependencies, and structure with our AI-powered visualizer.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Decorative Blurs -->
+  <div class="blur-glow-1"></div>
+  <div class="blur-glow-2"></div>
+
+  <!-- Header Section -->
+  <header class="navbar-header" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo-link">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad-1)"/>
+            <path d="M2 17L12 22L22 17" stroke="url(#logo-grad-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="url(#logo-grad-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad-1" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-2" x1="2" y1="17" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-3" x1="2" y1="12" x2="22" y2="17" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">inCode<span class="gradient-text">Vision</span></span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-action-mobile">
+          <a href="#demo" class="btn btn-secondary btn-sm">Get Started</a>
+        </div>
+      </nav>
+
+      <!-- Right Action & Mobile Toggle -->
+      <div class="nav-actions">
+        <a href="#demo" class="btn btn-secondary btn-sm desktop-only">Get Started</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section" id="home">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="badge">Next-Gen Code Intelligence</div>
+          <h1 class="hero-heading">Visualize Complex Codebases <span class="gradient-text-hero">Instantly</span></h1>
+          <p class="hero-description">
+            Say goodbye to digging through infinite nested folders. inCodeVision maps out your code structure, dependencies, and execution flows into clear interactive diagrams.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#demo" class="btn btn-primary">Start Visualizing Free</a>
+            <a href="#about" class="btn btn-text">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Interactive Visual Demo Widget -->
+        <div class="hero-visual">
+          <div class="visual-terminal-mockup">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="btn-dot close"></span>
+                <span class="btn-dot minimize"></span>
+                <span class="btn-dot maximize"></span>
+              </div>
+              <div class="terminal-title">incodevision-flow.json</div>
+            </div>
+            <div class="terminal-body">
+              <pre><code><span class="code-keyword">import</span> { CodeMapper } <span class="code-keyword">from</span> <span class="code-string">'@incodevision/core'</span>;
+
+<span class="code-comment">// Initialize interactive visual map</span>
+<span class="code-keyword">const</span> visualizer = <span class="code-keyword">new</span> <span class="code-class">CodeMapper</span>({
+  source: <span class="code-string">'./src'</span>,
+  theme: <span class="code-string">'cyberpunk'</span>,
+  renderMode: <span class="code-string">'interactive-3d'</span>
+});
+
+<span class="code-keyword">await</span> visualizer.render();
+<span class="code-keyword">console</span>.log(<span class="code-string">'Map loaded: 43 modules, 128 links 🚀'</span>);</code></pre>
+            </div>
+          </div>
+          <!-- Decorative Flow Card -->
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <span class="status-indicator"></span>
+              <span class="flow-card-title">Live Node Graph</span>
+            </div>
+            <div class="flow-node-visual">
+              <div class="node parent">App.js</div>
+              <div class="node-branch-line"></div>
+              <div class="node-children">
+                <div class="node child glow">Home.jsx</div>
+                <div class="node child">About.jsx</div>
+                <div class="node child">Contact.jsx</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="about">
+      <div class="section-header">
+        <div class="badge">Core Capabilities</div>
+        <h2 class="section-title">Designed for modern development</h2>
+        <p class="section-subtitle">Accelerate onboarding, debug dependencies, and master complex code architecture with intuitive visual tooling.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper cyan-glow">
+            <i class="fa-solid fa-network-wired"></i>
+          </div>
+          <h3 class="feature-card-title">Interactive Dependency Graph</h3>
+          <p class="feature-card-description">
+            Map modules, APIs, and import cycles. Explore relationships with collapsible branches and node focus views.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper purple-glow">
+            <i class="fa-solid fa-code-fork"></i>
+          </div>
+          <h3 class="feature-card-title">Multi-Language Parsing</h3>
+          <p class="feature-card-description">
+            Out-of-the-box support for TypeScript, Python, Go, and Rust. Parses AST patterns automatically.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper pink-glow">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <h3 class="feature-card-title">Zero-Configuration Setup</h3>
+          <p class="feature-card-description">
+            Simply run a single command or upload a folder. No heavy configuration, no learning curves.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Demo Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-container">
+        <div class="contact-text-content">
+          <h2 class="section-title text-left">Stay Updated</h2>
+          <p class="section-subtitle text-left">
+            Be the first to know about new features, updates, and open-source plugins we release. Sign up for our newsletter.
+          </p>
+        </div>
+        <div class="contact-form-wrapper">
+          <form class="glass-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing! We will reach out shortly.');">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <div class="input-with-icon">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" id="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Subscribe Now</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="logo-text">inCode<span class="gradient-text">Vision</span></span>
+        <p class="footer-tagline">Visualizing codebase structures with ease.</p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; 2026 inCodeVision. Crafted for the inCodeVision Internship.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Script -->
+  <script src="app.js"></script>
+</body>
+</html>

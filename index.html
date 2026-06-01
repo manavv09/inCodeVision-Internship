@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inCodeVision — Internship Portal</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Decorative Blurs -->
+  <div class="blur-glow-1"></div>
+  <div class="blur-glow-2"></div>
+
+  <main class="portal-main">
+    <div class="portal-container">
+      
+      <!-- Hub Header -->
+      <header class="portal-header">
+        <div class="logo-wrapper">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad-1)"/>
+            <path d="M2 17L12 22L22 17" stroke="url(#logo-grad-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="url(#logo-grad-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad-1" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-2" x1="2" y1="17" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-3" x1="2" y1="12" x2="22" y2="17" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="logo-text">inCode<span class="gradient-text">Vision</span></span>
+        </div>
+        <h1 class="portal-title">Internship Project Dashboard</h1>
+        <p class="portal-subtitle">Access built tasks directly with a single click.</p>
+      </header>
+
+      <!-- Task Links Grid -->
+      <div class="portal-grid">
+        
+        <!-- Card 1: Landing Page -->
+        <a href="Task-01-Landing-Page/index.html" class="portal-card">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-icon cyan-theme">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <div class="card-badge">Task 01</div>
+            <h2 class="card-title">Interactive Landing Page</h2>
+            <p class="card-desc">A premium responsive product website with glassmorphism header, hero visualization features, and mobile layout toggle.</p>
+            <div class="card-action">
+              <span>Launch App</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 2: Calculator -->
+        <a href="Task-02-Calculator/index.html" class="portal-card">
+          <div class="card-glow-pink"></div>
+          <div class="card-content">
+            <div class="card-icon purple-theme">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div class="card-badge">Task 02</div>
+            <h2 class="card-title">Glassmorphic Calculator</h2>
+            <p class="card-desc">A gorgeous calculator widget complete with floating slide-out history, decimal operations correction, and full keyboard key listeners.</p>
+            <div class="card-action">
+              <span>Launch App</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 3: Weather App -->
+        <a href="Task-03-Weather-App/dist/index.html" class="portal-card">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-icon cyan-theme">
+              <i class="fa-solid fa-cloud-sun"></i>
+            </div>
+            <div class="card-badge">Task 03</div>
+            <h2 class="card-title">Weather Dashboard</h2>
+            <p class="card-desc">A React weather forecasting app featuring auto-suggest geocoding lookups, 5-day forecasts, and weather-themed glass colors that adapt automatically.</p>
+            <div class="card-action">
+              <span>Launch App</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 4: Portfolio -->
+        <a href="Task-04-Portfolio/index.html" class="portal-card">
+          <div class="card-glow-pink"></div>
+          <div class="card-content">
+            <div class="card-icon purple-theme">
+              <i class="fa-solid fa-user-ninja"></i>
+            </div>
+            <div class="card-badge">Task 04</div>
+            <h2 class="card-title">Internship Portfolio</h2>
+            <p class="card-desc">A personal developer portfolio showcasing all internship projects, featuring a responsive contact form with Web3Forms integration.</p>
+            <div class="card-action">
+              <span>Launch App</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Footer Info -->
+      <footer class="portal-footer">
+        <p>Created for inCodeVision Internship Program &bull; 2026</p>
+      </footer>
+
+    </div>
+  </main>
+
+</body>
+</html>

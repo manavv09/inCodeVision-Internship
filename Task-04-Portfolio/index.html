@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inCodeVision — Frontend Developer Portfolio</title>
+  <meta name="description" content="Personal frontend developer portfolio. Showcase of projects built during the inCodeVision internship.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Decorative Blurs -->
+  <div class="blur-glow-1"></div>
+  <div class="blur-glow-2"></div>
+
+  <!-- Navigation Header -->
+  <header class="navbar-header" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo-link">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad-1)"/>
+            <path d="M2 17L12 22L22 17" stroke="url(#logo-grad-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad-1" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-2" x1="2" y1="17" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#06b6d4"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">inCode<span class="gradient-text">Portfolio</span></span>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-action-mobile">
+          <a href="../index.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-left"></i> Hub Dashboard</a>
+        </div>
+      </nav>
+
+      <!-- Right Action & Mobile Trigger -->
+      <div class="nav-actions">
+        <a href="../index.html" class="btn btn-secondary btn-sm desktop-only"><i class="fa-solid fa-arrow-left"></i> Hub Dashboard</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / Intro -->
+    <section class="hero-section" id="home">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="badge">Frontend Engineer Intern</div>
+          <h1 class="hero-heading">Crafting Premium <span class="gradient-text-hero">Web Interfaces</span></h1>
+          <p class="hero-description">
+            Hi, I'm a developer building beautiful, responsive, and interactive frontend applications. Here is a showcase of the work I delivered during my inCodeVision internship.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-text">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="profile-card-glass">
+            <div class="card-avatar">
+              <i class="fa-solid fa-user-ninja"></i>
+            </div>
+            <h3 class="profile-name">Intern Developer</h3>
+            <p class="profile-title">inCodeVision Internship</p>
+            <div class="profile-socials">
+              <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Skills -->
+    <section class="about-section" id="about">
+      <div class="section-header">
+        <div class="badge">Skills & Toolbox</div>
+        <h2 class="section-title">My Technical Capabilities</h2>
+        <p class="section-subtitle">A quick overview of languages, frameworks, and technologies I use to turn ideas into responsive web products.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+            <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Frameworks & Libraries</h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fa-brands fa-react"></i> React.js</span>
+            <span class="skill-tag"><i class="fa-solid fa-rocket"></i> Vite</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Design & Systems</h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fa-solid fa-palette"></i> Responsive Design</span>
+            <span class="skill-tag"><i class="fa-solid fa-sparkles"></i> Glassmorphism</span>
+            <span class="skill-tag"><i class="fa-solid fa-gears"></i> REST APIs Integration</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section" id="projects">
+      <div class="section-header">
+        <div class="badge">Portfolio Projects</div>
+        <h2 class="section-title">Tasks completed during internship</h2>
+        <p class="section-subtitle">Explore the interactive applications built from scratch, showcasing clean layout systems and clean JS/React structures.</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-card-image card-1-bg">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-card-title">Task 01: landing Page</h3>
+            <p class="project-card-desc">SaaS product landing page featuring transparent scrolling header navigations, dynamic interactive node charts, and a responsive burger slide-out layout.</p>
+            <a href="../Task-01-Landing-Page/index.html" class="btn btn-secondary btn-sm btn-block">Launch App <i class="fa-solid fa-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-card-image card-2-bg">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-card-title">Task 02: Glass Calculator</h3>
+            <p class="project-card-desc">A frosted glass calculator that supports floating history drawer sidebars, decimal point arithmetic adjustments, keyboard entries, and active click feedbacks.</p>
+            <a href="../Task-02-Calculator/index.html" class="btn btn-secondary btn-sm btn-block">Launch App <i class="fa-solid fa-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-card-image card-3-bg">
+            <i class="fa-solid fa-cloud-sun"></i>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-card-title">Task 03: Weather Dashboard</h3>
+            <p class="project-card-desc">A React weather forecasting app featuring auto-suggest geocoding lookups, 5-day forecasts, and weather-themed glass colors that adapt automatically.</p>
+            <a href="../Task-03-Weather-App/dist/index.html" class="btn btn-secondary btn-sm btn-block">Launch App <i class="fa-solid fa-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form with Web3Forms -->
+    <section class="contact-section" id="contact">
+      <div class="contact-container">
+        <div class="contact-text-content">
+          <h2 class="section-title text-left">Let's Collaborate</h2>
+          <p class="section-subtitle text-left">
+            Have a project in mind or want to discuss my work? Send me a message using this secure contact form. Responses will be delivered directly to my email.
+          </p>
+          <div class="contact-details">
+            <div class="detail-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>developer@example.com</span>
+            </div>
+            <div class="detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Remote / Worldwide</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <!-- Web3Forms Form (Zero Backend Config) -->
+          <form class="glass-form" id="contactForm">
+            <!-- Replace with Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+            
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <div class="input-with-icon">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <div class="input-with-icon">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Type your message here..." rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Gorgeous Modal Pop-up on Success -->
+  <div class="success-modal-overlay" id="successModal">
+    <div class="success-modal-card">
+      <div class="modal-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <h2>Message Sent Successfully!</h2>
+      <p>Thank you for reaching out. Your message has been routed and I will get back to you as soon as possible.</p>
+      <button class="btn btn-primary" id="closeModalBtn">Done</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="logo-text">inCode<span class="gradient-text">Portfolio</span></span>
+        <p class="footer-tagline">Crafting modern developer portfolio sites.</p>
+      </div>
+      <div class="footer-meta">
+        <p>&copy; 2026 inCodeVision Internship. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Script -->
+  <script src="app.js"></script>
+</body>
+</html>
