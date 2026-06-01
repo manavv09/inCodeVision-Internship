@@ -1,5 +1,7 @@
 # inCodeVision Internship Project Dashboard 🚀
 
+> 🌐 **Live Demo Portal**: [in-code-vision-internship.vercel.app](https://in-code-vision-internship.vercel.app/)
+
 Welcome to my **inCodeVision Frontend Development Internship** repository! This project hosts a collection of 4 premium interactive web applications built from scratch, unified under a single entry dashboard.
 
 ## 📸 Project Previews
@@ -86,6 +88,22 @@ A personal developer portfolio page showcasing all completed tasks.
 
 ## 🌐 Live Demo Deployments
 
-This repository is configured to be hosted live on:
-- **GitHub Pages**: Set build settings branch to `main` and folder to `/(root)`.
-- **Vercel**: Detects the static root configuration automatically on import.
+This repository is optimized for quick hosting on both **GitHub Pages** and **Vercel**. All routing configurations and asset paths resolve relatively, allowing you to deploy the entire multi-task workspace in seconds.
+
+### Option A: Hosting on GitHub Pages
+1. Go to your GitHub repository **Settings** tab.
+2. Click **Pages** in the left sidebar.
+3. Under **Build and deployment**, select **Deploy from a branch** as the source.
+4. Set the branch dropdown to **`main`** and the folder dropdown to **`/ (root)`**.
+5. Click **Save**. Within 1–2 minutes, your portal will be live at `https://<your-username>.github.io/<your-repo-name>/`.
+
+### Option B: Hosting on Vercel
+1. Log in to [Vercel](https://vercel.com/) and connect your GitHub profile.
+2. Click **Add New...** -> **Project** on your Vercel Dashboard.
+3. **Import** the repository containing this project.
+4. In the configuration settings:
+   - **Framework Preset**: Keep it as **Other** (Vercel automatically detects the static root configuration).
+   - **Root Directory**: Keep it as `./`.
+   - **Build and Output Settings**: Do not modify; keep these blank.
+5. Click **Deploy**. Vercel will host your portal instantly at a custom sub-domain.
+
