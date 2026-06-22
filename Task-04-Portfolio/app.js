@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const successModal = document.getElementById('successModal');
   const closeModalBtn = document.getElementById('closeModalBtn');
 
-  // Sticky Navigation on Scroll
+  // 1. Sticky Navigation on Scroll & Active Section Update
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navbar.classList.remove('scrolled');
     }
 
-    // Dynamic Active Link Update on Scroll
     let currentSectionId = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 120;
@@ -38,14 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Mobile Menu Toggle
+  // 2. Mobile Menu Toggle
   menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
     navMenu.classList.toggle('active');
     document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
   });
 
-  // Close Mobile Menu on Link Click
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       menuToggle.classList.remove('active');
@@ -54,14 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Web3Forms Form Submission Intercept
+  // 3. Web3Forms Form Submission Intercept
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Show sending loading feedback
+      // Show sending loading feedback with typing dots
       const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending Message...';
+      submitBtn.innerHTML = 'Sending Message <span class="sending-dots">...</span>';
       submitBtn.disabled = true;
 
       // Extract form data
@@ -86,8 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let json = await response.json();
         if (response.status === 200) {
           // Success
-          successModal.classList.add('active');
-          document.body.style.overflow = 'hidden'; // Lock scrolling
+          triggerModalOpen();
           contactForm.reset();
         } else {
           // Failure handling
@@ -97,8 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((err) => {
         console.error('Fetch error:', err);
         // Fallback demo support in case user hasn't configured a valid API token yet
-        successModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        triggerModalOpen();
         contactForm.reset();
       })
       .finally(() => {
@@ -108,11 +104,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Close Success Modal
+  // 4. Success Modal Handlers
+  function triggerModalOpen() {
+    successModal.classList.add('active');
+    const modalInside = successModal.querySelector('.success-modal-card');
+    if (modalInside) {
+      modalInside.classList.remove('animate-out');
+      modalInside.classList.add('animate-in');
+    }
+    document.body.style.overflow = 'hidden'; // Lock scrolling
+  }
+
   if (closeModalBtn) {
     closeModalBtn.addEventListener('click', () => {
-      successModal.classList.remove('active');
-      document.body.style.overflow = ''; // Unlock scrolling
+      const modalInside = successModal.querySelector('.success-modal-card');
+      if (modalInside) {
+        modalInside.classList.remove('animate-in');
+        modalInside.classList.add('animate-out');
+        setTimeout(() => {
+          successModal.classList.remove('active');
+          document.body.style.overflow = ''; // Unlock scrolling
+        }, 300);
+      } else {
+        successModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   }
+
+  // 5. Scroll Reveals
+  initScrollReveals();
 });
+
+function initScrollReveals() {
+  const sections = document.querySelectorAll('section');
+  const projectCards = document.querySelectorAll('.project-card');
+  const skillCategories = document.querySelectorAll('.skill-category');
+
+  const observerOptions = {
+    root: null,
+    threshold: 0.1,
+    rootMargin: '0px'
+  };
+
+  const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => {
+    section.classList.add('reveal-section');
+    sectionObserver.observe(section);
+  });
+
+  // Stagger reveal project cards
+  const projectObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, idx) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  projectCards.forEach(card => {
+    card.classList.add('reveal-card');
+    projectObserver.observe(card);
+  });
+
+  // Stagger reveal skill categories
+  const skillObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, idx) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 150);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  skillCategories.forEach(cat => {
+    cat.classList.add('reveal-card');
+    skillObserver.observe(cat);
+  });
+}
