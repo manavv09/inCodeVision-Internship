@@ -29,6 +29,92 @@ const getWeatherData = (code) => {
   return weatherCodeMap[code] || { name: 'Unknown Weather', icon: 'fa-solid fa-cloud', themeClass: 'theme-cloudy' };
 };
 
+// Weather Category Helper for Animated SVGs
+const getWeatherCategory = (code) => {
+  if (code === 0) return 'sunny';
+  if ([1, 2, 3, 45, 48].includes(code)) return 'cloudy';
+  if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(code)) return 'rainy';
+  if ([71, 73, 75].includes(code)) return 'snowy';
+  if ([95, 96, 99].includes(code)) return 'thunderstorm';
+  return 'cloudy';
+};
+
+// SVG Animated Weather Icon Component
+function WeatherIcon({ code, size = 'large' }) {
+  const category = getWeatherCategory(code);
+  const sizePx = size === 'large' ? 120 : 36;
+
+  switch (category) {
+    case 'sunny':
+      return (
+        <svg className="weather-svg sunny-svg" viewBox="0 0 100 100" width={sizePx} height={sizePx}>
+          <circle cx="50" cy="50" r="20" fill="#fbbf24" className="sun-core" />
+          <g className="sun-rays" stroke="#fbbf24" strokeWidth="6" strokeLinecap="round">
+            <line x1="50" y1="12" x2="50" y2="22" />
+            <line x1="50" y1="78" x2="50" y2="88" />
+            <line x1="12" y1="50" x2="22" y2="50" />
+            <line x1="78" y1="50" x2="88" y2="50" />
+            <line x1="23" y1="23" x2="30" y2="30" />
+            <line x1="70" y1="70" x2="77" y2="77" />
+            <line x1="23" y1="70" x2="30" y2="63" />
+            <line x1="70" y1="30" x2="77" y2="23" />
+          </g>
+        </svg>
+      );
+
+    case 'cloudy':
+      return (
+        <svg className="weather-svg cloudy-svg" viewBox="0 0 100 100" width={sizePx} height={sizePx}>
+          <path d="M35 60 A 15 15 0 0 1 50 45 A 20 20 0 0 1 80 50 A 15 15 0 0 1 75 75 L 35 75 A 15 15 0 0 1 35 60 Z" fill="#94a3b8" opacity="0.4" className="cloud-back" />
+          <path d="M25 65 A 12 12 0 0 1 37 53 A 16 16 0 0 1 61 57 A 12 12 0 0 1 57 77 L 25 77 A 12 12 0 0 1 25 65 Z" fill="#e2e8f0" className="cloud-front" />
+        </svg>
+      );
+
+    case 'rainy':
+      return (
+        <svg className="weather-svg rainy-svg" viewBox="0 0 100 100" width={sizePx} height={sizePx}>
+          <path d="M25 55 A 12 12 0 0 1 37 43 A 16 16 0 0 1 61 47 A 12 12 0 0 1 57 67 L 25 67 A 12 12 0 0 1 25 55 Z" fill="#94a3b8" className="cloud-front" />
+          <g className="rain-drops" stroke="#38bdf8" strokeWidth="3.5" strokeLinecap="round">
+            <line x1="32" y1="74" x2="30" y2="82" className="rain-drop drop-1" />
+            <line x1="42" y1="76" x2="40" y2="84" className="rain-drop drop-2" />
+            <line x1="52" y1="74" x2="50" y2="82" className="rain-drop drop-3" />
+          </g>
+        </svg>
+      );
+
+    case 'snowy':
+      return (
+        <svg className="weather-svg snowy-svg" viewBox="0 0 100 100" width={sizePx} height={sizePx}>
+          <path d="M25 55 A 12 12 0 0 1 37 43 A 16 16 0 0 1 61 47 A 12 12 0 0 1 57 67 L 25 67 A 12 12 0 0 1 25 55 Z" fill="#e2e8f0" className="cloud-front" />
+          <g fill="#7dd3fc" className="snow-flakes">
+            <circle cx="32" cy="74" r="2.5" className="snowflake flake-1" />
+            <circle cx="42" cy="77" r="3" className="snowflake flake-2" />
+            <circle cx="52" cy="74" r="2.5" className="snowflake flake-3" />
+          </g>
+        </svg>
+      );
+
+    case 'thunderstorm':
+      return (
+        <svg className="weather-svg storm-svg" viewBox="0 0 100 100" width={sizePx} height={sizePx}>
+          <path d="M25 55 A 12 12 0 0 1 37 43 A 16 16 0 0 1 61 47 A 12 12 0 0 1 57 67 L 25 67 A 12 12 0 0 1 25 55 Z" fill="#475569" className="cloud-front" />
+          <path d="M43 63 L 36 76 L 43 76 L 40 88 L 52 72 L 44 72 Z" fill="#f59e0b" className="lightning-bolt" />
+          <g className="rain-drops" stroke="#38bdf8" strokeWidth="2.5" strokeLinecap="round">
+            <line x1="28" y1="72" x2="26" y2="78" className="rain-drop drop-1" />
+            <line x1="56" y1="72" x2="54" y2="78" className="rain-drop drop-2" />
+          </g>
+        </svg>
+      );
+
+    default:
+      return (
+        <svg className="weather-svg cloudy-svg" viewBox="0 0 100 100" width={sizePx} height={sizePx}>
+          <path d="M25 65 A 12 12 0 0 1 37 53 A 16 16 0 0 1 61 57 A 12 12 0 0 1 57 77 L 25 77 A 12 12 0 0 1 25 65 Z" fill="#e2e8f0" />
+        </svg>
+      );
+  }
+}
+
 // Quick Select Cities
 const DEFAULT_CITIES = [
   { name: 'London', lat: 51.5074, lon: -0.1278, country: 'United Kingdom' },
@@ -236,7 +322,7 @@ export default function App() {
 
               <div className="weather-temp-block">
                 <div className="weather-visuals">
-                  <i className={`${weatherDetails.icon} condition-main-icon`}></i>
+                  <WeatherIcon code={weatherData.weather_code} size="large" />
                   <div>
                     <span className="main-temp-val">{Math.round(weatherData.temperature_2m)}°</span>
                     <span className="temp-unit">C</span>
@@ -288,7 +374,7 @@ export default function App() {
                         <span className="forecast-date-label">{day.date}</span>
                       </div>
                       <div className="forecast-condition">
-                        <i className={`${dayDetails.icon} forecast-icon`}></i>
+                        <WeatherIcon code={day.code} size="small" />
                         <span className="forecast-status-name">{dayDetails.name}</span>
                       </div>
                       <div className="forecast-temp-range">

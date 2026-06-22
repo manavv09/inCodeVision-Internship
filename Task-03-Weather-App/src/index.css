@@ -645,3 +645,161 @@ body {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   SVG Weather Animations
+   ========================================================================== */
+.weather-svg {
+  display: inline-block;
+  vertical-align: middle;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+}
+
+.weather-visuals .weather-svg {
+  filter: drop-shadow(0 0 20px var(--accent-shadow));
+}
+
+/* 1. Sunny Sun Ray Rotation */
+.sunny-svg .sun-core {
+  transform-origin: center;
+  animation: pulseCore 4s ease-in-out infinite alternate;
+}
+
+.sunny-svg .sun-rays {
+  transform-origin: center;
+  animation: rotateRays 30s linear infinite;
+}
+
+@keyframes pulseCore {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes rotateRays {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 2. Cloudy Shifting */
+.cloudy-svg .cloud-back {
+  animation: driftBack 5s ease-in-out infinite alternate;
+}
+
+.cloudy-svg .cloud-front {
+  animation: driftFront 4s ease-in-out infinite alternate;
+}
+
+@keyframes driftBack {
+  from { transform: translate(0px, 0px); }
+  to { transform: translate(4px, -2px); }
+}
+
+@keyframes driftFront {
+  from { transform: translate(0px, 0px); }
+  to { transform: translate(-3px, 1px); }
+}
+
+/* 3. Rainy Drop Descent */
+.rainy-svg .cloud-front, .storm-svg .cloud-front {
+  animation: floatRainCloud 3.5s ease-in-out infinite alternate;
+}
+
+.rainy-svg .rain-drop, .storm-svg .rain-drop {
+  animation: fallRain 1s linear infinite;
+  transform-origin: top;
+  opacity: 0;
+}
+
+.rain-drops .drop-1 {
+  animation-delay: 0.1s;
+}
+.rain-drops .drop-2 {
+  animation-delay: 0.5s;
+}
+.rain-drops .drop-3 {
+  animation-delay: 0.3s;
+}
+
+@keyframes floatRainCloud {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-3px); }
+}
+
+@keyframes fallRain {
+  0% {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+/* 4. Snowy Flake Drift */
+.snowy-svg .cloud-front {
+  animation: floatRainCloud 4s ease-in-out infinite alternate;
+}
+
+.snowy-svg .snowflake {
+  animation: fallSnow 2.2s linear infinite;
+  opacity: 0;
+}
+
+.snow-flakes .flake-1 {
+  animation-delay: 0.2s;
+  animation-duration: 2s;
+}
+.snow-flakes .flake-2 {
+  animation-delay: 0.8s;
+  animation-duration: 2.5s;
+}
+.snow-flakes .flake-3 {
+  animation-delay: 1.4s;
+  animation-duration: 2.2s;
+}
+
+@keyframes fallSnow {
+  0% {
+    transform: translateY(-8px) translateX(0px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(6px) translateX(3px);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(18px) translateX(-2px);
+    opacity: 0;
+  }
+}
+
+/* 5. Thunderstorm Lightning Bolt */
+.storm-svg .lightning-bolt {
+  animation: flashBolt 3s ease infinite;
+}
+
+@keyframes flashBolt {
+  0%, 90%, 94%, 98%, 100% {
+    opacity: 1;
+    fill: #f59e0b;
+    filter: drop-shadow(0 0 0px transparent);
+  }
+  92%, 96% {
+    opacity: 0.3;
+    fill: #fef08a;
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8));
+  }
+}
+
