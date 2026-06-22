@@ -23,10 +23,10 @@
   <div class="blur-glow-2"></div>
 
   <main class="portal-main">
-    <div class="portal-container">
+    <div class="portal-layout">
       
-      <!-- Hub Header -->
-      <header class="portal-header">
+      <!-- Control Panel (Sidebar) -->
+      <aside class="control-panel">
         <div class="logo-wrapper">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad-1)"/>
@@ -49,90 +49,164 @@
           </svg>
           <span class="logo-text">inCode<span class="gradient-text">Vision</span></span>
         </div>
-        <h1 class="portal-title">Internship Project Dashboard</h1>
-        <p class="portal-subtitle">Access built tasks directly with a single click.</p>
-      </header>
 
-      <!-- Task Links Grid -->
-      <div class="portal-grid">
-        
-        <!-- Card 1: Landing Page -->
-        <a href="Task-01-Landing-Page/index.html" class="portal-card">
-          <div class="card-glow"></div>
-          <div class="card-content">
-            <div class="card-icon cyan-theme">
-              <i class="fa-solid fa-laptop-code"></i>
-            </div>
-            <div class="card-badge">Task 01</div>
-            <h2 class="card-title">Interactive Landing Page</h2>
-            <p class="card-desc">A premium responsive product website with glassmorphism header, hero visualization features, and mobile layout toggle.</p>
-            <div class="card-action">
-              <span>Launch App</span>
-              <i class="fa-solid fa-arrow-right"></i>
+        <!-- Completion Circle Progress -->
+        <div class="sidebar-section progress-section">
+          <h3>Progress Overview</h3>
+          <div class="completion-gauge">
+            <svg class="circle-svg" viewBox="0 0 100 100">
+              <circle class="circle-bg" cx="50" cy="50" r="40" />
+              <circle class="circle-progress" cx="50" cy="50" r="40" />
+            </svg>
+            <div class="gauge-label">
+              <span class="gauge-value">4 / 4</span>
+              <span class="gauge-sub">Tasks Live</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <!-- Card 2: Calculator -->
-        <a href="Task-02-Calculator/index.html" class="portal-card">
-          <div class="card-glow-pink"></div>
-          <div class="card-content">
-            <div class="card-icon purple-theme">
-              <i class="fa-solid fa-calculator"></i>
-            </div>
-            <div class="card-badge">Task 02</div>
-            <h2 class="card-title">Glassmorphic Calculator</h2>
-            <p class="card-desc">A gorgeous calculator widget complete with floating slide-out history, decimal operations correction, and full keyboard key listeners.</p>
-            <div class="card-action">
-              <span>Launch App</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </div>
+        <!-- System Stats / Live Clock -->
+        <div class="sidebar-section">
+          <h3>System Metrics</h3>
+          <div class="metric-row">
+            <span class="metric-label"><i class="fa-regular fa-clock"></i> Local Time</span>
+            <span class="metric-value" id="live-clock">--:--:--</span>
           </div>
-        </a>
-
-        <!-- Card 3: Weather App -->
-        <a href="Task-03-Weather-App/dist/index.html" class="portal-card">
-          <div class="card-glow"></div>
-          <div class="card-content">
-            <div class="card-icon cyan-theme">
-              <i class="fa-solid fa-cloud-sun"></i>
-            </div>
-            <div class="card-badge">Task 03</div>
-            <h2 class="card-title">Weather Dashboard</h2>
-            <p class="card-desc">A React weather forecasting app featuring auto-suggest geocoding lookups, 5-day forecasts, and weather-themed glass colors that adapt automatically.</p>
-            <div class="card-action">
-              <span>Launch App</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </div>
+          <div class="metric-row">
+            <span class="metric-label"><i class="fa-solid fa-hourglass-start"></i> Uptime</span>
+            <span class="metric-value" id="session-uptime">00:00:00</span>
           </div>
-        </a>
-
-        <!-- Card 4: Portfolio -->
-        <a href="Task-04-Portfolio/index.html" class="portal-card">
-          <div class="card-glow-pink"></div>
-          <div class="card-content">
-            <div class="card-icon purple-theme">
-              <i class="fa-solid fa-user-ninja"></i>
-            </div>
-            <div class="card-badge">Task 04</div>
-            <h2 class="card-title">Internship Portfolio</h2>
-            <p class="card-desc">A personal developer portfolio showcasing all internship projects, featuring a responsive contact form with Web3Forms integration.</p>
-            <div class="card-action">
-              <span>Launch App</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </div>
+          <div class="metric-row">
+            <span class="metric-label"><i class="fa-solid fa-circle-check"></i> Gateway Status</span>
+            <span class="metric-value status-online">ONLINE</span>
           </div>
-        </a>
+        </div>
 
+        <!-- Tech Stack Distribution -->
+        <div class="sidebar-section">
+          <h3>Tech Distribution</h3>
+          <div class="tech-bar-container">
+            <div class="tech-info">
+              <span>JavaScript / React</span>
+              <span>50%</span>
+            </div>
+            <div class="tech-track"><div class="tech-bar js-bar" style="width: 50%;"></div></div>
+          </div>
+          <div class="tech-bar-container">
+            <div class="tech-info">
+              <span>HTML5 / Layouts</span>
+              <span>20%</span>
+            </div>
+            <div class="tech-track"><div class="tech-bar html-bar" style="width: 20%;"></div></div>
+          </div>
+          <div class="tech-bar-container">
+            <div class="tech-info">
+              <span>CSS3 / Glassmorphism</span>
+              <span>30%</span>
+            </div>
+            <div class="tech-track"><div class="tech-bar css-bar" style="width: 30%;"></div></div>
+          </div>
+        </div>
+
+        <!-- Simulated Logs Console -->
+        <div class="sidebar-section logs-section">
+          <h3>System Terminal</h3>
+          <div class="sys-logs-console" id="sys-logs">
+            <!-- Driven by dashboard.js -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Portal Content -->
+      <div class="main-content">
+        <!-- Hub Header -->
+        <header class="portal-header">
+          <h1 class="portal-title">Project Control Deck</h1>
+          <p class="portal-subtitle">Launch interactive workspace applications, view metrics, and inspect code modules.</p>
+        </header>
+
+        <!-- Task Links Grid -->
+        <div class="portal-grid">
+          
+          <!-- Card 1: Landing Page -->
+          <a href="Task-01-Landing-Page/index.html" class="portal-card">
+            <div class="card-glow"></div>
+            <div class="card-content">
+              <div class="card-icon cyan-theme">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div class="card-badge">Task 01</div>
+              <h2 class="card-title">Interactive Landing Page</h2>
+              <p class="card-desc">SaaS product website layout featuring scroll fade-ins, glassmorphic headers, and dynamic interactive developer widgets.</p>
+              <div class="card-action">
+                <span>Launch Application</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: Calculator -->
+          <a href="Task-02-Calculator/index.html" class="portal-card">
+            <div class="card-glow-pink"></div>
+            <div class="card-content">
+              <div class="card-icon purple-theme">
+                <i class="fa-solid fa-calculator"></i>
+              </div>
+              <div class="card-badge">Task 02</div>
+              <h2 class="card-title">Glassmorphic Calculator</h2>
+              <p class="card-desc">Sleek calculator dashboard featuring interactive browser click synthesizer audio, scroll history cache, and glow FX burst.</p>
+              <div class="card-action">
+                <span>Launch Application</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3: Weather App -->
+          <a href="Task-03-Weather-App/dist/index.html" class="portal-card">
+            <div class="card-glow"></div>
+            <div class="card-content">
+              <div class="card-icon cyan-theme">
+                <i class="fa-solid fa-cloud-sun"></i>
+              </div>
+              <div class="card-badge">Task 03</div>
+              <h2 class="card-title">Weather Dashboard</h2>
+              <p class="card-desc">React forecasts application integrating city location lookup search, animated weather state icons, and interactive meteo graphs.</p>
+              <div class="card-action">
+                <span>Launch Application</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4: Portfolio -->
+          <a href="Task-04-Portfolio/index.html" class="portal-card">
+            <div class="card-glow-pink"></div>
+            <div class="card-content">
+              <div class="card-icon purple-theme">
+                <i class="fa-solid fa-user-ninja"></i>
+              </div>
+              <div class="card-badge">Task 04</div>
+              <h2 class="card-title">Internship Portfolio</h2>
+              <p class="card-desc">Interactive developer showcase tracking project tasks timeline with responsive contact forms and scroll loading animations.</p>
+              <div class="card-action">
+                <span>Launch Application</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Footer Info -->
+        <footer class="portal-footer">
+          <p>Created for inCodeVision Internship Program &bull; 2026</p>
+        </footer>
       </div>
-
-      <!-- Footer Info -->
-      <footer class="portal-footer">
-        <p>Created for inCodeVision Internship Program &bull; 2026</p>
-      </footer>
 
     </div>
   </main>
 
+  <script src="dashboard.js"></script>
 </body>
 </html>
