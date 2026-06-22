@@ -932,3 +932,73 @@ img {
     text-align: center;
   }
 }
+
+/* ==========================================================================
+   New Premium Interactive Styles
+   ========================================================================== */
+
+/* Typewriter Blinking Cursor */
+.terminal-cursor {
+  color: var(--accent-cyan);
+  font-weight: bold;
+  animation: cursorBlink 0.8s step-end infinite;
+  margin-left: 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.terminal-cursor.blink {
+  animation: cursorBlink 0.8s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Node Graph Interactive Highlights */
+.node {
+  transition: transform var(--transition-fast), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-fast);
+  cursor: pointer;
+}
+
+.node:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.node.glow-strong {
+  border-color: var(--accent-pink) !important;
+  box-shadow: 0 0 15px rgba(236, 72, 153, 0.4) !important;
+  background: rgba(236, 72, 153, 0.12) !important;
+}
+
+.node.glow-cyan {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4) !important;
+  background: rgba(6, 182, 212, 0.12) !important;
+}
+
+.node-branch-line {
+  transition: background-color var(--transition-normal);
+}
+
+.node-branch-line.active {
+  background-color: var(--branch-highlight-color, var(--accent-cyan));
+}
+
+.node-branch-line.active::after {
+  background-color: var(--branch-highlight-color, var(--accent-cyan));
+}
+
+/* Scroll reveals */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
