@@ -1,4 +1,4 @@
-# inCodeVision Internship Project Dashboard 🚀
+# InCodeVision Internship Project Dashboard 🚀
 
 > 🌐 **Live Demo Portal**: [in-code-vision-internship.vercel.app](https://in-code-vision-internship.vercel.app/)
 
