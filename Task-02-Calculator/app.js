@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultLine = document.getElementById('resultLine');
   const historyToggleBtn = document.getElementById('historyToggleBtn');
   const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+  const muteToggleBtn = document.getElementById('muteToggleBtn');
   const historyPanel = document.getElementById('historyPanel');
   const historyList = document.getElementById('historyList');
   const appContainer = document.querySelector('.app-container');
@@ -15,13 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeOperation = null;
   let shouldResetDisplay = false;
   let history = JSON.parse(localStorage.getItem('incode_calc_history')) || [];
+  
+  // Audio state
+  let audioCtx = null;
+  let isMuted = JSON.parse(localStorage.getItem('incode_calc_muted')) !== false; // default to muted (true)
 
-  // Initialize History Panel view
+  // Initialize
   updateHistoryUI();
+  updateMuteUI();
 
   // History Toggle click
   historyToggleBtn.addEventListener('click', () => {
     appContainer.classList.toggle('history-open');
+    playClickSound(700, 0.04);
   });
 
   // Clear History
@@ -29,13 +36,36 @@ document.addEventListener('DOMContentLoaded', () => {
     history = [];
     localStorage.removeItem('incode_calc_history');
     updateHistoryUI();
+    playClickSound(400, 0.08);
   });
+
+  // Mute/Unmute Toggle click
+  if (muteToggleBtn) {
+    muteToggleBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      localStorage.setItem('incode_calc_muted', JSON.stringify(isMuted));
+      updateMuteUI();
+      if (!isMuted) {
+        // Play quick pleasant sound to confirm audio active
+        playClickSound(800, 0.06);
+      }
+    });
+  }
 
   // Setup Button Click Event Handlers
   keys.forEach(key => {
     key.addEventListener('click', () => {
       const val = key.getAttribute('data-value');
       const action = key.getAttribute('data-action');
+
+      // Click sound synthesis
+      if (action === 'calculate') {
+        playClickSound(880, 0.08);
+      } else if (action === 'all-clear' || action === 'delete') {
+        playClickSound(450, 0.06);
+      } else {
+        playClickSound(600, 0.03);
+      }
 
       if (val !== null) {
         handleValueInput(val);
@@ -83,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         targetButton.classList.remove('key-press-effect');
       }, 100);
 
-      // Perform action
+      // Perform action (this will automatically trigger playClickSound inside the click handler)
       targetButton.click();
     }
   });
@@ -119,19 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // App functions
   function appendNumber(num) {
-    // If we just pressed equals or set an operator, reset display on next number click
     if (shouldResetDisplay) {
       currentInput = '';
       shouldResetDisplay = false;
     }
 
-    // Limit length to prevent layout breaks
     if (currentInput.replace('.', '').length >= 15) return;
-
-    // Prevent duplicate decimal points
     if (num === '.' && currentInput.includes('.')) return;
 
-    // Fix leading zeros
     if (currentInput === '0' && num !== '.') {
       currentInput = num;
     } else {
@@ -223,17 +248,12 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
     }
 
-    // Round to avoid float point issues (e.g. 0.1 + 0.2 = 0.30000004)
     result = parseFloat(result.toFixed(10));
-
-    // Save calculation formula for display
     const formulaStr = `${previousInput} ${getOperatorSymbol(activeOperation)} ${currentInput}`;
     
-    // Save to history list
     const historyItem = { formula: formulaStr, result: String(result) };
     history.unshift(historyItem);
     
-    // Cap history size to 30 items
     if (history.length > 30) history.pop();
     
     localStorage.setItem('incode_calc_history', JSON.stringify(history));
@@ -242,6 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
     previousInput = '';
     activeOperation = null;
     shouldResetDisplay = true;
+
+    // Trigger visual neon burst
+    triggerGlowBurst();
 
     // Update displays
     formulaLine.textContent = formulaStr + ' =';
@@ -252,14 +275,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update Display Elements
   function updateDisplay() {
-    // Current ongoing formula line
     if (activeOperation) {
       formulaLine.textContent = `${previousInput} ${getOperatorSymbol(activeOperation)}`;
     } else {
       formulaLine.textContent = '';
     }
-
-    // Current entry line
     resultLine.textContent = formatOutput(currentInput);
   }
 
@@ -267,12 +287,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function formatOutput(numStr) {
     if (numStr === 'Error: Div by 0') return numStr;
     
-    // Add comma grouping for large numbers
     const parts = numStr.split('.');
     let integerPart = parts[0];
     const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
     
-    // Format integer grouping
     const formattedInt = Number(integerPart).toLocaleString('en-US', {
       maximumFractionDigits: 0
     });
@@ -291,6 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Render History UI List
+  updateHistoryUI();
+
   function updateHistoryUI() {
     historyList.innerHTML = '';
     
@@ -308,8 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="history-item-res">${item.result}</div>
       `;
 
-      // Loading formula from history item on click
       historyItem.addEventListener('click', () => {
+        playClickSound(750, 0.04);
         currentInput = item.result;
         previousInput = '';
         activeOperation = null;
@@ -320,5 +340,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
       historyList.appendChild(historyItem);
     });
+  }
+
+  // Audio mute UI updater
+  function updateMuteUI() {
+    if (!muteToggleBtn) return;
+    const icon = muteToggleBtn.querySelector('i');
+    if (isMuted) {
+      icon.className = 'fa-solid fa-volume-xmark';
+      muteToggleBtn.classList.remove('active');
+    } else {
+      icon.className = 'fa-solid fa-volume-high';
+      muteToggleBtn.classList.add('active');
+    }
+  }
+
+  // Web Audio synth click player
+  function playClickSound(freq = 600, duration = 0.05) {
+    if (isMuted) return;
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      console.warn("AudioContext blocked or failed: ", e);
+    }
+  }
+
+  // Neon glow burst effect on calculate
+  function triggerGlowBurst() {
+    const display = document.querySelector('.calculator-display');
+    if (display) {
+      display.classList.remove('glow-burst');
+      void display.offsetWidth; // Reflow
+      display.classList.add('glow-burst');
+    }
   }
 });
